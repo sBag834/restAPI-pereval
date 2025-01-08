@@ -40,6 +40,13 @@ class Database:
             self.connection.commit()
             return cursor.fetchone()[0]  # возвращаем ID новой записи
 
+    def get_record_by_id(self, id):
+        with self.connection.cursor(cursor_factory=RealDictCursor) as cursor:
+            cursor.execute("SELECT * FROM public.pereval_added WHERE id = %s;", (id,))
+            return cursor.fetchone()
+
+    
+
     def close(self):
         """Закрытие соединения с базой данных."""
         if self.connection:
