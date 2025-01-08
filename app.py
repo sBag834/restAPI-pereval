@@ -44,5 +44,23 @@ def get_data(id):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route('/submitData/<int:id>', methods=['PATCH'])
+def patch_data(id):
+    """Редактирование записи по ID."""
+    data = request.json
+
+    # Проверка наличия необходимых полей в запросе
+    if not any(key in data for key in ('date_added', 'raw_data', 'images')):
+        return jsonify({"state": 0, "message": "No fields to update."}), 400
+
+    try:
+        updated = db.update_record(id, data)
+        if updated:
+            return jsonify({"state": 1, "message": "Record updated successfully."}), 200
+        else:
+            return jsonify({"state": 0, "message": "Record not found or status is not 'new'."}), 400
+    except Exception as e:
+        return jsonify({"state": 0, "message": str(e)}), 500
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
