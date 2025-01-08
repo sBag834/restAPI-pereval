@@ -9,9 +9,11 @@ load_dotenv()
 app = Flask(__name__)
 db = Database()
 
+
 @app.errorhandler(500)
 def internal_error(error):
     return jsonify({"error": "Internal Server Error", "message": str(error)}), 500
+
 
 @app.route('/submitData', methods=['POST'])
 def submit_data():

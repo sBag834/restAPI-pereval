@@ -79,7 +79,7 @@ class Database:
 
     def get_records_by_email(self, email):
         with self.connection.cursor(cursor_factory=RealDictCursor) as cursor:
-            cursor.execute("SELECT * FROM public.pereval_added WHERE raw_data->>'user'->>'email' = %s;", (email,))
+            cursor.execute("SELECT * FROM public.pereval_added WHERE raw_data::jsonb->'user'->>'email' = %s;", (email,))
             return cursor.fetchall()
 
     def close(self):
