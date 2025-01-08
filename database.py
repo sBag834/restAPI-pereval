@@ -45,7 +45,37 @@ class Database:
             cursor.execute("SELECT * FROM public.pereval_added WHERE id = %s;", (id,))
             return cursor.fetchone()
 
-    
+    def update_record(self, id, data):
+        with self.connection.cursor() as cursor:
+            # Получаем текущую запись для проверки статуса
+            cursor.execute("SELECT status FROM public.pereval_added WHERE id = %s;", (id,))
+            record_status = cursor.fetchone()
+
+            if record_status and record_status[0] == 'new':
+                # Обновляем только разрешенные поля
+                updates = []
+                values = []
+
+                if 'date_added' in data:
+                    updates.append("date_added = %s")
+                    values.append(data['date_added'])
+
+                if 'raw_data' in data:
+                    updates.append("raw_data = %s::json")
+                    values.append(data['raw_data'])
+
+                if 'images' in data:
+                    updates.append("images = %s::json")
+                    values.append(data['images'])
+
+                if updates:
+                    query = f"UPDATE public.pereval_added SET {', '.join(updates)} WHERE id = %s;"
+                    values.append(id)
+                    cursor.execute(query, tuple(values))
+                    self.connection.commit()
+                    return True
+
+            return False
 
     def close(self):
         """Закрытие соединения с базой данных."""
