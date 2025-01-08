@@ -62,5 +62,20 @@ def patch_data(id):
     except Exception as e:
         return jsonify({"state": 0, "message": str(e)}), 500
 
+
+@app.route('/submitData/', methods=['GET'])
+def get_records_by_email():
+    """Получение всех записей пользователя по email."""
+    email = request.args.get('user__email')
+
+    if not email:
+        return jsonify({"error": "Email parameter is required."}), 400
+
+    try:
+        records = db.get_records_by_email(email)
+        return jsonify(records), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
