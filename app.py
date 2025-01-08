@@ -32,7 +32,17 @@ def submit_data():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
+@app.route('/submitData/<int:id>', methods=['GET'])
+def get_data(id):
+    """Получение записи по ID."""
+    try:
+        record = db.get_record_by_id(id)
+        if record:
+            return jsonify(record), 200
+        else:
+            return jsonify({"error": "Record not found"}), 404
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
