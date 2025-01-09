@@ -52,9 +52,9 @@
 **Тело запроса (JSON):**
 
     {
-    "date_added": "2025-01-02T14:00:00",
-    "raw_data": "{"beautyTitle": "пер.", "title": "Новый перевал"}", \"user\": {\"email\": \"meow@gmail.com\"}}",
-    "images": "{"images": [{"id": 1, "title":"Седловина"}]}"
+    "date_added": "2025-01-08T17:50:00",
+    "raw_data": "{\"beautyTitle\": \"пер.\", \"title\": \"Новый перевал\", \"user\": {\"email\": \"meoww@gmail.com\"}}",
+    "images": "{\"images\": [{\"id\": 56, \"title\":\"Изображение\"}]}"
     }
 
 **Ответ:**
@@ -89,9 +89,9 @@ GET `http://localhost:5000/submitData/1`
 **Тело запроса (JSON):**
 
     {
-    "date_added": "2025-01-02T14:00:00",
-    "raw_data": "{"beautyTitle": "пер.", "title": "Обновленный перевал"}",
-    "images": "{"images": [{"id": 1, "title":"Обновленное изображение"}]}"
+    "date_added": "2025-01-08T17:50:00",
+    "raw_data": "{\"beautyTitle\": \"пер.\", \"title\": \"Обновлённый перевал\", \"user\": {\"email\": \"meoww@gmail.com\"}}",
+    "images": "{\"images\": [{\"id\": 56, \"title\":\"Обнавлённое изображение\"}]}"
     }
 
 **Ответ:**
