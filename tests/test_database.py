@@ -9,8 +9,8 @@ class TestDatabase(unittest.TestCase):
     def setUpClass(cls):
         os.environ['FSTR_DB_HOST'] = 'localhost'
         os.environ['FSTR_DB_PORT'] = '5432'
-        os.environ['FSTR_DB_LOGIN'] = 'postgres'
-        os.environ['FSTR_DB_PASS'] = '36543654'
+        os.environ['FSTR_DB_LOGIN'] = 'postgres'        #Поменяйте на свой логин
+        os.environ['FSTR_DB_PASS'] = '36543654'         #Поменяйте на свой пароль
 
         cls.db_instance = Database()
 

@@ -121,3 +121,11 @@ GET `http://localhost:5000/submitData/?user__email=user@email.tld`
     ...
     }
     ]
+
+## Использование Tests
+
+1. В директории `tests`, в файле `test_database.py`, подставте свои данные для доступа к БД
+2. Запустите приложение:\
+`python app.py`
+3. В отдельном терминале запустите тесты\
+`python -m unittest discover tests/`
