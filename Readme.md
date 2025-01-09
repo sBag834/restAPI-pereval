@@ -33,13 +33,12 @@
 
 3. Создайте файл `.env` в корневом каталоге проекта и добавьте параметры подключения к базе данных: 
 
-
-
-    FSTR_DB_HOST=localhost
-    FSTR_DB_PORT=5432
-    FSTR_DB_LOGIN=ваш_логин
-    FSTR_DB_PASS=ваш_пароль
-
+`
+FSTR_DB_HOST=localhost`\
+`FSTR_DB_PORT=5432`\
+`FSTR_DB_LOGIN=ваш_логин`\
+`FSTR_DB_PASS=ваш_пароль
+`
 
 4. Запустите приложение:\
 `python app.py`
